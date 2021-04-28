@@ -61,9 +61,7 @@ const firmware = (api: MiddlewareAPI<Dispatch, AppState>) => (next: Dispatch) =>
                 status === 'reconnect-in-normal' &&
                 action.payload?.connected &&
                 action.payload?.mode === 'bootloader' &&
-                // this one is the key, if reconnected device has firmware which is not latest, proceed with
-                // subsequent updated automatically
-                // !action.payload?.firmwareRelease?.isLatest
+                // this one is the key, if there was previous firmware update that set intermediaryInstalled, proceed with subsequent updated automatically
                 intermediaryInstalled
             ) {
                 api.dispatch(firmwareActions.firmwareUpdate());
