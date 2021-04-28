@@ -39,8 +39,8 @@ const getWalletAccount = (account?: Partial<Account>): Account => ({
  * device.firmwareRelease property
  * note that values don't make much sense.
  */
-const getFirmwareRelease = (): NonNullable<Device['firmwareRelease']> => ({
-    isLatest: false,
+export const getFirmwareRelease = (): NonNullable<Device['firmwareRelease']> => ({
+    isLatest: true,
     isRequired: false,
     isNewer: false,
     changelog: [
@@ -366,6 +366,7 @@ declare global {
     namespace NodeJS {
         interface Global {
             JestMocks: {
+                getFirmwareRelease: typeof getFirmwareRelease;
                 getDeviceFeatures: typeof getDeviceFeatures;
                 getConnectDevice: typeof getConnectDevice;
                 getSuiteDevice: typeof getSuiteDevice;
@@ -385,6 +386,7 @@ const intlMock = {
 };
 
 global.JestMocks = {
+    getFirmwareRelease,
     getDeviceFeatures,
     getConnectDevice,
     getSuiteDevice,
