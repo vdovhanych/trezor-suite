@@ -4,25 +4,10 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import alias from '../utils/alias';
 import { assetPrefix, project, isDev, isAnalyzing } from '../utils/env';
 import { getRevision } from '../utils/git';
-import { generateCacheGroups } from '../utils/suite';
 
 import pkgFile from '../../suite-desktop/package.json';
 
 const gitRevision = getRevision();
-const suiteCacheGroups = generateCacheGroups([
-    'components',
-    'views',
-    'actions',
-    'reducers',
-    'utils',
-    'hooks',
-    'support',
-    'middlewares',
-    'constants',
-    'services',
-    'config',
-    'storage',
-]);
 
 const config: webpack.Configuration = {
     mode: 'production',
@@ -41,17 +26,18 @@ const config: webpack.Configuration = {
         alias,
         fallback: {
             // Polyfills API for NodeJS libraries in the browser
-            crypto: require.resolve('crypto-browserify'),
-            os: require.resolve('os-browserify/browser'),
-            path: require.resolve('path-browserify'),
-            stream: require.resolve('stream-browserify'),
             buffer: require.resolve('buffer'),
-            process: require.resolve('process'),
+            crypto: require.resolve('crypto-browserify'), // Can maybe be removed after getting rid of Google OAuth Lib
+            stream: require.resolve('stream-browserify'),
             // For Google OAuth library to work
             child_process: false,
             fs: false,
             net: false,
             tls: false,
+            // Not needed
+            os: false,
+            process: false,
+            path: false,
         },
     },
     optimization: {
@@ -72,7 +58,6 @@ const config: webpack.Configuration = {
                     name: 'components',
                     test: /[\\/]packages[\\/]components[\\/]/,
                 },
-                ...suiteCacheGroups,
             },
         },
     },

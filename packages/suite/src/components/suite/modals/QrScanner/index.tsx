@@ -1,11 +1,13 @@
+import React, { lazy, Suspense, useRef, useState } from 'react';
+import styled from 'styled-components';
+
 import { ExternalLink, Translation, Modal } from '@suite-components';
 import * as URLS from '@suite-constants/urls';
 import { parseUri } from '@suite-utils/parseUri';
-import { Icon, colors, P } from '@trezor/components';
+import { Icon, colors, P, Loader } from '@trezor/components';
 import { UserContextPayload } from '@suite-actions/modalActions';
-import QrReader from 'react-qr-reader';
-import React, { useState } from 'react';
-import styled from 'styled-components';
+
+const QrReader = lazy(() => import(/* webpackChunkName: "react-qr-reader" */ 'react-qr-reader'));
 
 const Description = styled.div`
     display: flex;
@@ -144,14 +146,16 @@ const QrScanner = ({ onCancel, decision }: Props) => {
 
             {!error && (
                 <CameraPlaceholderWrapper show={readerLoaded}>
-                    <QrReader
-                        delay={500}
-                        onError={handleError}
-                        onScan={handleScan}
-                        onLoad={onLoad}
-                        style={{ width: '100%', borderRadius: '3px' }}
-                        showViewFinder={false}
-                    />
+                    <Suspense fallback={<Loader size={64} />}>
+                        <QrReader
+                            delay={500}
+                            onError={handleError}
+                            onScan={handleScan}
+                            onLoad={onLoad}
+                            style={{ width: '100%', borderRadius: '3px' }}
+                            showViewFinder={false}
+                        />
+                    </Suspense>
                 </CameraPlaceholderWrapper>
             )}
 
