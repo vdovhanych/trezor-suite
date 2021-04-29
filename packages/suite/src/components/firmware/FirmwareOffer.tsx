@@ -54,15 +54,14 @@ const IconWrapper = styled.div`
 `;
 
 const Changelog = styled.div`
-    /* color: ${props => props.theme.TYPE_DARK_GREY}; */
+    color: ${props => props.theme.TYPE_DARK_GREY};
     max-height: 360px;
-    padding: 12px 16px 0px 24px;
     overflow: auto;
 `;
 
 const ChangelogGroup = styled.div`
     margin-bottom: 20px;
-    /* color: ${props => props.theme.TYPE_DARK_GREY}; */
+    color: ${props => props.theme.TYPE_DARK_GREY};
     font-size: ${variables.FONT_SIZE.SMALL};
 `;
 
@@ -114,6 +113,7 @@ const FirmwareOffer = ({ currentVersion, newVersion, releaseChangelog }: Props) 
                     <Version new>{newVersion}</Version>
                     {parsedChangelog && (
                         <Tooltip
+                            rich
                             content={
                                 <Changelog>
                                     {parsedChangelog.slice(0, 1).map(log => (

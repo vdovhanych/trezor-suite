@@ -72,6 +72,7 @@ const SecurityCheck = () => {
                     values={{
                         strong: chunks => (
                             <StyledTooltip
+                                rich
                                 content={
                                     <Hologram
                                         trezorModel={device?.features?.major_version === 1 ? 1 : 2}
