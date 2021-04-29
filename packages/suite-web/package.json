@@ -7,7 +7,7 @@
         "type-check:watch": "yarn type-check -- --watch",
         "lint": "eslint . --ext .tsx,.ts",
         "dev": "rimraf ./build && yarn workspace @trezor/suite-build run dev:web",
-        "dev:analyze": "ANALYZE=true yarn dev",
+        "analyze": "ANALYZE=true yarn build",
         "cert": "sh ./scripts/gencert.sh",
         "dev:https": "node ./scripts/httpsServer.js",
         "build": "rimraf ./build && yarn workspace @trezor/suite-build run build:web"
