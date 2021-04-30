@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useRef, useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import styled from 'styled-components';
 
 import { ExternalLink, Translation, Modal } from '@suite-components';
