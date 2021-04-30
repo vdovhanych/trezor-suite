@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Button, Icon, Tooltip, variables } from '@trezor/components';
 import { Translation, TrezorLink } from '@suite-components';
 import { parseFirmwareChangelog } from '@suite-utils/device';
-import { useTheme } from '@suite-hooks';
 import { TrezorDevice } from '@suite-types';
 import { CHANGELOG_URL } from '@suite-constants/urls';
 
