@@ -22,26 +22,23 @@ describe('Analytics', () => {
     beforeEach(function () {
         cy.task('startEmu', { wipe: true });
         cy.task('setupEmu');
-        cy.task('stopEmu');
         cy.task('startBridge');
         cy.viewport(1024, 768).resetDb();
     });
 
     it('Analytics should be enabled on initial run, then user may disable it and this option should be respected on subsequent reloads', function () {
-        // cy.request('https://data.trezor.io/suite/log/web/develop.log').as('log');
-
         cy.prefixedVisit('/', {
             onBeforeLoad: onBeforeLoad(requests),
         });
 
         // pass through initial run
-        cy.getTestElement('@welcome/continue-button').click();
         cy.getTestElement('@analytics/toggle-switch').should('be.checked');
         cy.getTestElement('@analytics/toggle-switch').click({ force: true });
         cy.getTestElement('@analytics/toggle-switch').should('not.be.checked');
         cy.getTestElement('@analytics/go-to-onboarding-button').click();
-        cy.getTestElement('@onboarding/skip-button').click();
-        cy.getTestElement('@onboarding/skip-button').click();
+
+        cy.getTestElement('@onboarding/continue-button').click();
+        cy.getTestElement('@onboarding/exit-app-button').click();
 
         // NOTE: this will fail on localhost as analytics does not run there
         // assert that only 1 request was fired
