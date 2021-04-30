@@ -5,14 +5,14 @@ import { useTheme } from '../../utils';
 import Lottie from 'lottie-react';
 import LottieT1Connect from './lottie/t1_connect.json';
 import LottieTTConnect from './lottie/tt_connect.json';
-import VideoT1BootloaderLight from './videos/t1_bootloader_light.mp4';
-import VideoT1BootloaderDark from './videos/t1_bootloader_dark.mp4';
-import VideoT1SuccessLight from './videos/t1_success_light.mp4';
-import VideoT1SuccessDark from './videos/t1_success_dark.mp4';
-import VideoTTBootloaderLight from './videos/tt_bootloader_light.mp4';
-import VideoTTBootloaderDark from './videos/tt_bootloader_dark.mp4';
-import VideoTTSuccessLight from './videos/tt_success_light.mp4';
-import VideoTTSuccessDark from './videos/tt_success_dark.mp4';
+import VideoT1BootloaderLight from '../../videos/t1_bootloader_light.mp4';
+import VideoT1BootloaderDark from '../../videos/t1_bootloader_dark.mp4';
+import VideoT1SuccessLight from '../../videos/t1_success_light.mp4';
+import VideoT1SuccessDark from '../../videos/t1_success_dark.mp4';
+import VideoTTBootloaderLight from '../../videos/tt_bootloader_light.mp4';
+import VideoTTBootloaderDark from '../../videos/tt_bootloader_dark.mp4';
+import VideoTTSuccessLight from '../../videos/tt_success_light.mp4';
+import VideoTTSuccessDark from '../../videos/tt_success_dark.mp4';
 
 const Wrapper = styled.div<{ size: number; borderRadius: string }>`
     width: ${props => props.size}px;
