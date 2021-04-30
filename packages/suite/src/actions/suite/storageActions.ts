@@ -313,7 +313,7 @@ export const removeDatabase = () => async (dispatch: Dispatch, getState: GetStat
     const rememberedDevices = getState().devices.filter(d => d.remember);
     // forget all remembered devices
     rememberedDevices.forEach(d => {
-        suiteActions.rememberDevice(d);
+        dispatch(suiteActions.forgetDevice(d));
     });
     await db.removeDatabase();
     dispatch(
