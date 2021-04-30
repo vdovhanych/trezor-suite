@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { H1, Button, variables } from '@trezor/components';
+import { H1, Button, variables, DeviceAnimation } from '@trezor/components';
 import { Translation, WebusbButton } from '@suite-components';
 import { useDevice, useFirmware, useSelector } from '@suite-hooks';
 import { isDesktop, isMac } from '@suite-utils/env';
@@ -88,12 +88,10 @@ const BulletPointText = styled.span<{ active?: boolean }>`
         `}
 `;
 
-const Img = styled.div`
+const StyledDeviceAnimation = styled(DeviceAnimation)`
     flex: 0 0 200px;
     width: 200px;
     height: 200px;
-    border-radius: 16px;
-    background: grey;
 `;
 
 const Heading = styled(H1)`
@@ -176,10 +174,12 @@ const ReconnectDevicePrompt = ({ deviceVersion, requestedMode }: Props) => {
             </Button>
         );
 
+    const animation = device?.features?.model === 'T' ? 'TT_BOOTLOADER' : 'T1_BOOTLOADER';
+
     return (
         <Overlay desktopBorder={isDesktop() && !isMac() ? DESKTOP_WRAPPER_BORDER_WIDTH : undefined}>
             <Wrapper>
-                <Img />
+                <StyledDeviceAnimation type={animation} size={200} borderRadius="30px" loop />
                 <Content>
                     <Heading>
                         {!reconnectedInRequestedMode ? text.headingStart : text.headingSuccess}
