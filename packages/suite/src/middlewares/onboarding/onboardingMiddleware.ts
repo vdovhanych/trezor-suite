@@ -1,9 +1,7 @@
-import TrezorConnect from 'trezor-connect';
 import { MiddlewareAPI } from 'redux';
 import { SUITE } from '@suite-actions/constants';
 import * as onboardingActions from '@onboarding-actions/onboardingActions';
 import * as suiteActions from '@suite-actions/suiteActions';
-import { isWebUSB } from '@suite-utils/transport';
 import { AppState, Action, Dispatch } from '@suite-types';
 
 const onboardingMiddleware = (api: MiddlewareAPI<Dispatch, AppState>) => (next: Dispatch) => (
