@@ -89,7 +89,6 @@ interface Props {
 
 const FirmwareOffer = ({ currentVersion, newVersion, releaseChangelog }: Props) => {
     const parsedChangelog = parseFirmwareChangelog(releaseChangelog);
-    const { theme } = useTheme();
     return (
         <FwVersionWrapper>
             {currentVersion && (
