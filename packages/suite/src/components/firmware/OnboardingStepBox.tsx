@@ -29,6 +29,7 @@ interface Props extends BoxProps {
     outerActions?: React.ReactNode;
     confirmOnDevice?: number;
     disableConfirmWrapper?: boolean;
+    disablePadding?: boolean;
 }
 
 const OnboardingStepBox = ({
@@ -39,6 +40,7 @@ const OnboardingStepBox = ({
     outerActions,
     confirmOnDevice,
     disableConfirmWrapper,
+    disablePadding = false,
     className,
     children,
     ...rest
@@ -56,7 +58,13 @@ const OnboardingStepBox = ({
                 ) : undefined}
             </ConfirmWrapper>
         ) : undefined}
-        <Box image={image} heading={heading} description={description} {...rest}>
+        <Box
+            image={image}
+            heading={heading}
+            description={description}
+            disablePadding={disablePadding}
+            {...rest}
+        >
             {(children || innerActions) && (
                 <>
                     {children}
