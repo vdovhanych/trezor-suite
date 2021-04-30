@@ -7,9 +7,10 @@ type Requests = ReturnType<typeof urlSearchParams>[];
 const requests: Requests = [];
 
 const onBeforeLoad = (requests: Requests) => (win: Window) => {
+    win.Math.random = () => 0.4; // to make tests deterministic, this value ensures state YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
     cy.stub(win, 'fetch', function (url, options) {
         // @ts-ignore
-        win.Math.random = () => 0.4; // to make tests deterministic, this value ensures state YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
         if (url.startsWith('https://data.trezor.io/suite/log')) {
             const params = urlSearchParams(url);
             requests.push(params);
