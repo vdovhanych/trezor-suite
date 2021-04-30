@@ -4109,9 +4109,9 @@ const definedMessages = defineMessages({
         id: 'TR_BUY_TREZOR',
         defaultMessage: 'Buy Trezor',
     },
-    TR_TRY_BRIDGE: {
-        id: 'TR_TRY_BRIDGE',
-        defaultMessage: 'Try bridge',
+    TR_DISABLE_WEBUSB_TRY_BRIDGE: {
+        id: 'TR_DISABLE_WEBUSB_TRY_BRIDGE',
+        defaultMessage: 'Disable WebUSB and use Bridge',
         describe:
             'Bridge is a communication deamon that some users will need to download and install. So word bridge should not be translated.',
     },
@@ -5868,8 +5868,7 @@ const definedMessages = defineMessages({
     TR_ONBOARDING_DEVICE_CHECK_4: {
         id: 'TR_ONBOARDING_DEVICE_CHECK_4',
         description: 'Shown only if device has firmware already installed',
-        defaultMessage:
-            'It looks like devicee was used before. Did you set up the device yourself?',
+        defaultMessage: 'It looks like device was used before. Did you set up the device yourself?',
     },
     TR_HOLOGRAM_WARNING_BANNER: {
         defaultMessage: 'Does your hologram looks suspicious? <a>Contact us</a>.',
@@ -5961,7 +5960,7 @@ const definedMessages = defineMessages({
     TR_TROUBLESHOOTING_TIP_BRIDGE_DESCRIPTION: {
         id: 'TR_TROUBLESHOOTING_TIP_BRIDGE_DESCRIPTION',
         defaultMessage:
-            'Trezor Bridge is used to facilitates communication between browser and your device.',
+            '<a>Download Trezor Bridge</a> to enable communication between a browser and your device.',
     },
     TR_TROUBLESHOOTING_TIP_INCOGNITO_TITLE: {
         id: 'TR_TROUBLESHOOTING_TIP_INCOGNITO_TITLE',

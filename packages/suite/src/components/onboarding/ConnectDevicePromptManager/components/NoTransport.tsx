@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { TroubleshootingTips } from '@onboarding-components';
 import { Translation } from '@suite-components';
-import { isWeb } from '@suite-utils/env';
+import {
+    TROUBLESHOOTING_TIP_BRIDGE,
+    TROUBLESHOOTING_TIP_RESTART_COMPUTER,
+} from '@onboarding-components/TroubleshootingTips/tips';
 
 const Wrapper = styled.div`
     display: flex;
@@ -15,21 +18,7 @@ const NoTransport = () => (
     <Wrapper>
         <TroubleshootingTips
             label={<Translation id="TR_TREZOR_BRIDGE_IS_NOT_RUNNING" />}
-            items={[
-                {
-                    key: '1',
-                    heading: <Translation id="TR_TROUBLESHOOTING_TIP_BRIDGE_TITLE" />,
-                    description: <Translation id="TR_TROUBLESHOOTING_TIP_BRIDGE_DESCRIPTION" />,
-                    hide: !isWeb(),
-                },
-                {
-                    key: '2',
-                    heading: <Translation id="TR_TROUBLESHOOTING_TIP_RESTART_COMPUTER_TITLE" />,
-                    description: (
-                        <Translation id="TR_TROUBLESHOOTING_TIP_RESTART_COMPUTER_DESCRIPTION" />
-                    ),
-                },
-            ]}
+            items={[TROUBLESHOOTING_TIP_BRIDGE, TROUBLESHOOTING_TIP_RESTART_COMPUTER]}
         />
     </Wrapper>
 );

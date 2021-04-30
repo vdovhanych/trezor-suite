@@ -3,29 +3,16 @@ import styled from 'styled-components';
 import { TroubleshootingTips } from '@onboarding-components';
 import { Translation } from '@suite-components/Translation';
 import { ConnectedDeviceStatus } from '@onboarding-types';
+import {
+    TROUBLESHOOTING_TIP_BRIDGE,
+    TROUBLESHOOTING_TIP_USB,
+    TROUBLESHOOTING_TIP_DIFFERENT_COMPUTER,
+} from '@onboarding-components/TroubleshootingTips/tips';
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
 `;
-
-const tips = [
-    {
-        key: '1',
-        heading: <Translation id="TR_TROUBLESHOOTING_TIP_BRIDGE_TITLE" />,
-        description: <Translation id="TR_TROUBLESHOOTING_TIP_BRIDGE_DESCRIPTION" />,
-    },
-    {
-        key: '3',
-        heading: <Translation id="TR_TROUBLESHOOTING_TIP_USB_PORT_TITLE" />,
-        description: <Translation id="TR_TROUBLESHOOTING_TIP_USB_PORT_DESCRIPTION" />,
-    },
-    {
-        key: '4',
-        heading: <Translation id="TR_TROUBLESHOOTING_TIP_COMPUTER_TITLE" />,
-        description: <Translation id="TR_TROUBLESHOOTING_TIP_COMPUTER_DESCRIPTION" />,
-    },
-];
 interface Props {
     deviceStatus: ConnectedDeviceStatus;
     trezorModel?: number;
@@ -38,7 +25,11 @@ const UnexpectedDeviceState = ({ deviceStatus, trezorModel }: Props) => (
             <>
                 <TroubleshootingTips
                     label={<Translation id="TR_YOUR_DEVICE_IS_CONNECTED_BUT_UNREADABLE" />}
-                    items={tips}
+                    items={[
+                        TROUBLESHOOTING_TIP_BRIDGE,
+                        TROUBLESHOOTING_TIP_USB,
+                        TROUBLESHOOTING_TIP_DIFFERENT_COMPUTER,
+                    ]}
                 />
 
                 {/* <Button onClick={() => TrezorConnect.disableWebUSB()}>

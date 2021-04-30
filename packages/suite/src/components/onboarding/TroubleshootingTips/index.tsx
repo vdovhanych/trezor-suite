@@ -109,15 +109,13 @@ const TroubleshootingTips = ({ label, items, offerWebUsb }: Props) => (
                 ))}
         </Items>
 
-        {/* TODO: probably too confusing and we would be better of to just instruct user to refresh the page */}
-        {/* Should be move out of this component */}
         {offerWebUsb && (
             <Button
                 variant="secondary"
                 data-test="@onboarding/try-bridge-button"
                 onClick={() => TrezorConnect.disableWebUSB()}
             >
-                <Translation id="TR_TRY_BRIDGE" />
+                <Translation id="TR_DISABLE_WEBUSB_TRY_BRIDGE" />
             </Button>
         )}
 

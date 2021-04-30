@@ -1,38 +1,19 @@
 import React from 'react';
 import { useSpring, config, animated } from 'react-spring';
 import styled from 'styled-components';
-import { isWeb } from '@suite-utils/env';
 import { TroubleshootingTips } from '@onboarding-components';
 import { Translation } from '@suite-components/Translation';
+import {
+    TROUBLESHOOTING_TIP_BRIDGE,
+    TROUBLESHOOTING_TIP_INCOGNITO,
+    TROUBLESHOOTING_TIP_USB,
+    TROUBLESHOOTING_TIP_DIFFERENT_COMPUTER,
+} from '@onboarding-components/TroubleshootingTips/tips';
 
 const Wrapper = styled(animated.div)`
     display: flex;
 `;
 
-const tips = [
-    {
-        key: '1',
-        heading: <Translation id="TR_TROUBLESHOOTING_TIP_BRIDGE_TITLE" />,
-        description: <Translation id="TR_TROUBLESHOOTING_TIP_BRIDGE_DESCRIPTION" />,
-        hide: !isWeb(),
-    },
-    {
-        key: '2',
-        heading: <Translation id="TR_TROUBLESHOOTING_TIP_INCOGNITO_TITLE" />,
-        description: <Translation id="TR_TROUBLESHOOTING_TIP_INCOGNITO_DESCRIPTION" />,
-        hide: !isWeb(),
-    },
-    {
-        key: '3',
-        heading: <Translation id="TR_TROUBLESHOOTING_TIP_USB_PORT_TITLE" />,
-        description: <Translation id="TR_TROUBLESHOOTING_TIP_USB_PORT_DESCRIPTION" />,
-    },
-    {
-        key: '4',
-        heading: <Translation id="TR_TROUBLESHOOTING_TIP_COMPUTER_TITLE" />,
-        description: <Translation id="TR_TROUBLESHOOTING_TIP_COMPUTER_DESCRIPTION" />,
-    },
-];
 interface Props {
     offerWebUsb: boolean;
 }
@@ -48,7 +29,12 @@ const NoDeviceDetected = ({ offerWebUsb }: Props) => {
         <Wrapper style={fadeStyles}>
             <TroubleshootingTips
                 label={<Translation id="TR_STILL_DONT_SEE_YOUR_TREZOR" />}
-                items={tips}
+                items={[
+                    TROUBLESHOOTING_TIP_BRIDGE,
+                    TROUBLESHOOTING_TIP_INCOGNITO,
+                    TROUBLESHOOTING_TIP_USB,
+                    TROUBLESHOOTING_TIP_DIFFERENT_COMPUTER,
+                ]}
                 offerWebUsb={offerWebUsb}
             />
         </Wrapper>

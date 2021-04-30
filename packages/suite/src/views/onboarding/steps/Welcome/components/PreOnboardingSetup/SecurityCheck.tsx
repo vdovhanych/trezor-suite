@@ -29,7 +29,7 @@ const Underline = styled.span`
 const Buttons = styled.div`
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 24px;
     padding-top: 24px;
     border-top: 1px solid ${props => props.theme.STROKE_GREY};
@@ -48,6 +48,13 @@ const StyledButton = styled(OnboardingButton.Cta)`
 
 const StyledTooltip = styled(Tooltip)`
     display: inline-block;
+`;
+
+const OuterActions = styled.div`
+    display: flex;
+    margin-top: 40px;
+    width: 100%;
+    justify-content: center;
 `;
 
 const SecurityCheck = () => {
@@ -108,41 +115,49 @@ const SecurityCheck = () => {
     ] as const;
 
     return (
-        <Box variant="small" image="PIN" heading={<Translation id="TR_ONBOARDING_DEVICE_CHECK" />}>
-            <Items>
-                {items
-                    .filter(item => item.show)
-                    .map(item => (
-                        <Item key={item.key}>
-                            <Icon size={24} icon={item.icon} color={theme.TYPE_DARK_GREY} />
-                            <Text>{item.content}</Text>
-                        </Item>
-                    ))}
-            </Items>
+        <>
+            <Box
+                variant="small"
+                image="PIN"
+                heading={<Translation id="TR_ONBOARDING_DEVICE_CHECK" />}
+            >
+                <Items>
+                    {items
+                        .filter(item => item.show)
+                        .map(item => (
+                            <Item key={item.key}>
+                                <Icon size={24} icon={item.icon} color={theme.TYPE_DARK_GREY} />
+                                <Text>{item.content}</Text>
+                            </Item>
+                        ))}
+                </Items>
 
-            <Buttons>
-                {initialized ? (
-                    <StyledButton
-                        data-test="@onboarding/exit-app-button"
-                        onClick={() => goto('suite-index')}
-                    >
-                        <Translation id="TR_GO_TO_SUITE" />
-                    </StyledButton>
-                ) : (
-                    <StyledButton
-                        onClick={() => goToNextStep()}
-                        data-test="@onboarding/continue-button"
-                    >
-                        <Translation id="TR_ONBOARDING_START_CTA" />
-                    </StyledButton>
-                )}
-                <TrezorLink variant="nostyle" href={SUPPORT_URL}>
-                    <OnboardingButton.Cta variant="secondary" fullWidth>
+                <Buttons>
+                    {initialized ? (
+                        <StyledButton
+                            data-test="@onboarding/exit-app-button"
+                            onClick={() => goto('suite-index')}
+                        >
+                            <Translation id="TR_GO_TO_SUITE" />
+                        </StyledButton>
+                    ) : (
+                        <StyledButton
+                            onClick={() => goToNextStep()}
+                            data-test="@onboarding/continue-button"
+                        >
+                            <Translation id="TR_ONBOARDING_START_CTA" />
+                        </StyledButton>
+                    )}
+                </Buttons>
+            </Box>
+            <OuterActions>
+                <TrezorLink variant="underline" href={SUPPORT_URL}>
+                    <OnboardingButton.Skip>
                         <Translation id="TR_CONTACT_SUPPORT" />
-                    </OnboardingButton.Cta>
+                    </OnboardingButton.Skip>
                 </TrezorLink>
-            </Buttons>
-        </Box>
+            </OuterActions>
+        </>
     );
 };
 
