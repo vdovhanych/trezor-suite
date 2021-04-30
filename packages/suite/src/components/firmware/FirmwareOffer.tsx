@@ -110,10 +110,10 @@ const FirmwareOffer = ({ currentVersion, newVersion, releaseChangelog }: Props) 
                     <Translation id="TR_ONBOARDING_NEW_VERSION" />
                 </Label>
                 <VersionWrapper>
-                    <Version new>{newVersion}</Version>
-                    {parsedChangelog && (
+                    {parsedChangelog ? (
                         <Tooltip
                             rich
+                            dashed
                             content={
                                 <Changelog>
                                     {parsedChangelog.slice(0, 1).map(log => (
@@ -151,13 +151,10 @@ const FirmwareOffer = ({ currentVersion, newVersion, releaseChangelog }: Props) 
                             }
                             placement="top"
                         >
-                            <Icon
-                                useCursorPointer
-                                size={14}
-                                color={theme.TYPE_GREEN}
-                                icon="QUESTION_ACTIVE"
-                            />
+                            <Version new>{newVersion}</Version>
                         </Tooltip>
+                    ) : (
+                        <Version new>{newVersion}</Version>
                     )}
                 </VersionWrapper>
             </FwVersion>

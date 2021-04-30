@@ -65,7 +65,7 @@ const ConnectDevicePrompt = ({ children, connected, showWarning }: Props) => {
     return (
         <Wrapper style={fadeStyles}>
             <ImageWrapper>
-                <DeviceAnimation type="CONNECT_TT" loop={!connected} />
+                <DeviceAnimation type="TT_CONNECT" loop={!connected} />
                 <Checkmark>
                     {connected && !showWarning && (
                         <Icon icon="CHECK_ACTIVE" size={24} color={theme.TYPE_GREEN} />
