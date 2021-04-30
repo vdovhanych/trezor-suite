@@ -17,9 +17,13 @@ const components: { [key: string]: React.LazyExoticComponent<any> } = {
     'wallet-send': lazy(() => import('@wallet-views/send')),
     'wallet-sign-verify': lazy(() => import('@wallet-views/sign-verify')),
 
+    'wallet-coinmarket': lazy(() => import('@wallet-views/coinmarket/buy')),
     'wallet-coinmarket-buy': lazy(() => import('@wallet-views/coinmarket/buy')),
     'wallet-coinmarket-buy-detail': lazy(() => import('@wallet-views/coinmarket/buy/detail')),
     'wallet-coinmarket-buy-offers': lazy(() => import('@wallet-views/coinmarket/buy/offers')),
+    'wallet-coinmarket-sell': lazy(() => import('@wallet-views/coinmarket/sell')),
+    'wallet-coinmarket-sell-detail': lazy(() => import('@wallet-views/coinmarket/sell/detail')),
+    'wallet-coinmarket-sell-offers': lazy(() => import('@wallet-views/coinmarket/sell/offers')),
     'wallet-coinmarket-exchange': lazy(() => import('@wallet-views/coinmarket/exchange')),
     'wallet-coinmarket-exchange-detail': lazy(
         () => import('@wallet-views/coinmarket/exchange/detail'),

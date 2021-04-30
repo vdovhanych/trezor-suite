@@ -18,6 +18,9 @@ import WalletSignVerify from '@wallet-views/sign-verify';
 import WalletCoinmarketBuy from '@wallet-views/coinmarket/buy';
 import WalletCoinmarketBuyDetail from '@wallet-views/coinmarket/buy/detail';
 import WalletCoinmarketBuyOffers from '@wallet-views/coinmarket/buy/offers';
+import WalletCoinmarketSell from '@wallet-views/coinmarket/sell';
+import WalletCoinmarketSellDetail from '@wallet-views/coinmarket/sell/detail';
+import WalletCoinmarketSellOffers from '@wallet-views/coinmarket/sell/offers';
 import WalletCoinmarketExchange from '@wallet-views/coinmarket/exchange';
 import WalletCoinmarketExchangeDetail from '@wallet-views/coinmarket/exchange/detail';
 import WalletCoinmarketExchangeOffers from '@wallet-views/coinmarket/exchange/offers';
@@ -41,9 +44,13 @@ const components: { [key: string]: any } = {
     'wallet-send': WalletSend,
     'wallet-sign-verify': WalletSignVerify,
 
+    'wallet-coinmarket': WalletCoinmarketBuy,
     'wallet-coinmarket-buy': WalletCoinmarketBuy,
     'wallet-coinmarket-buy-detail': WalletCoinmarketBuyDetail,
     'wallet-coinmarket-buy-offers': WalletCoinmarketBuyOffers,
+    'wallet-coinmarket-sell': WalletCoinmarketSell,
+    'wallet-coinmarket-sell-detail': WalletCoinmarketSellDetail,
+    'wallet-coinmarket-sell-offers': WalletCoinmarketSellOffers,
     'wallet-coinmarket-exchange': WalletCoinmarketExchange,
     'wallet-coinmarket-exchange-detail': WalletCoinmarketExchangeDetail,
     'wallet-coinmarket-exchange-offers': WalletCoinmarketExchangeOffers,
