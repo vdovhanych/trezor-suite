@@ -2,10 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { H1, Button, variables, DeviceAnimation } from '@trezor/components';
 import { Translation, WebusbButton } from '@suite-components';
-import { useDevice, useFirmware, useSelector } from '@suite-hooks';
+import { useDevice, useFirmware } from '@suite-hooks';
 import { isDesktop, isMac } from '@suite-utils/env';
 import { DESKTOP_WRAPPER_BORDER_WIDTH } from '@suite-constants/layout';
-import { isWebUSB } from '@suite-utils/transport';
 
 const Wrapper = styled.div`
     display: flex;
@@ -145,11 +144,10 @@ interface Props {
 
 const ReconnectDevicePrompt = ({ deviceVersion, requestedMode }: Props) => {
     const { device } = useDevice();
-    const { firmwareUpdate } = useFirmware();
-    const transport = useSelector(state => state.suite.transport);
+    const { firmwareUpdate, isWebUSB } = useFirmware();
 
     const activeStep = device?.connected ? 0 : 1; // 0: disconnect device, 1: instructions to reconnect in bootloader
-    const showWebUSB = !device?.connected && isWebUSB(transport);
+    const showWebUSB = !device?.connected && isWebUSB;
     const isStepActive = (num: number) => activeStep === num;
     const text = getTextForMode(requestedMode, deviceVersion);
 
@@ -168,11 +166,7 @@ const ReconnectDevicePrompt = ({ deviceVersion, requestedMode }: Props) => {
             <Button onClick={firmwareUpdate} data-test="@firmware/install-button">
                 <Translation id="TR_INSTALL" />
             </Button>
-        ) : (
-            <Button onClick={() => { }} data-test="@firmware/install-button">
-                <Translation id="TR_CONTINUE" />
-            </Button>
-        );
+        ) : undefined;
 
     const animation = device?.features?.model === 'T' ? 'TT_BOOTLOADER' : 'T1_BOOTLOADER';
 
