@@ -94,7 +94,7 @@ export const goto = (routeName: Route['name'], params?: RouteParams, preservePar
 
 /**
  * Used only in application modal.
- * Returns Route of application beneath the application modal. (real nextjs/Router value)
+ * Returns Route of application beneath the application modal. (real Router value)
  */
 export const getBackgroundRoute = () => () =>
     findRoute(history.location.pathname + history.location.hash);
