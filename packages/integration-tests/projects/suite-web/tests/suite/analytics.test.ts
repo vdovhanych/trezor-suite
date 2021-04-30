@@ -7,10 +7,7 @@ type Requests = ReturnType<typeof urlSearchParams>[];
 const requests: Requests = [];
 
 const onBeforeLoad = (requests: Requests) => (win: Window) => {
-    win.Math.random = () => 0.4; // to make tests deterministic, this value ensures state YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
-
     cy.stub(win, 'fetch', function (url, options) {
-        // @ts-ignore
         if (url.startsWith('https://data.trezor.io/suite/log')) {
             const params = urlSearchParams(url);
             requests.push(params);
@@ -44,13 +41,12 @@ describe('Analytics', () => {
         cy.wrap(requests).its(0).its('c_session_id').as('request0');
         cy.wrap(requests).its(0).should('have.property', 'c_type', 'initial-run-completed');
         cy.wrap(requests).its(0).should('have.property', 'analytics', 'false');
-        cy.wrap(requests).its(0).should('have.property', 'c_instance_id', 'YYYYYYYYYY');
         cy.wrap(requests).its(1).should('equal', undefined);
 
         // important, suite needs time to save initialRun flag into storage
         cy.getTestElement('@suite/loading').should('not.exist');
 
-        // go to settings
+        cy.wait(1000);
         cy.prefixedVisit('/', {
             onBeforeLoad: onBeforeLoad(requests),
         });
@@ -79,7 +75,6 @@ describe('Analytics', () => {
 
         cy.wrap(requests).its(2).its('c_session_id').as('request1');
         cy.wrap(requests).its(2).should('have.property', 'c_type', 'settings/general/change-fiat');
-        cy.wrap(requests).its(2).should('have.property', 'c_instance_id', 'YYYYYYYYYY');
         cy.wrap(requests).its(2).should('have.property', 'fiat', 'huf');
         // and check that session ids changed after reload;
         cy.get('@request0').then(r0 => {
@@ -93,7 +88,7 @@ describe('Analytics', () => {
         cy.wrap(requests).its(4).should('have.property', 'c_type', 'menu/goto/switch-device');
 
         // adding wallet
-        cy.getTestElement('@switch-device/add-wallet-button').click();
+        cy.getTestElement('@switch-device/add-hidden-wallet-button').click();
         cy.wrap(requests).its(5).should('have.property', 'c_type', 'switch-device/add-wallet');
     });
 });
