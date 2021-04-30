@@ -28,14 +28,6 @@ const onboardingMiddleware = (api: MiddlewareAPI<Dispatch, AppState>) => (next: 
             api.dispatch(onboardingActions.resetOnboarding());
         }
     }
-
-    // consider turning of webusb in moment user selects he is using a new device and it is model One.
-    const { path, selectedModel } = api.getState().onboarding;
-    const { transport } = api.getState().suite;
-    if (path.includes('new') && selectedModel === 1 && isWebUSB(transport)) {
-        TrezorConnect.disableWebUSB();
-    }
-
     return action;
 };
 
