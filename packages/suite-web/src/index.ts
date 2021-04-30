@@ -43,7 +43,7 @@ const getSupportedBrowsersPartial = (supportedBrowsers?: SupportedBrowser[]) =>
         : ``;
 
 const getMainHtml = (props: MainHtmlProps) => `
-<div class="${style.container}">
+<div class="${style.container}" data-test="@browser-detect">
     <h1 class="${style.title}">${props.title}</h1>
     <p class="${style.subtitle}">${props.subtitle}</p>
     ${getButtonPartial(props)}

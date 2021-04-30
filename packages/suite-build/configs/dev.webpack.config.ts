@@ -25,7 +25,7 @@ const config: webpack.Configuration = {
             static: distPath,
             progress: 'minimal',
             // @ts-ignore - Property doesn't exist in types but works
-            ramdisk: true,
+            ramdisk: false,
         }),
         new ReactRefreshWebpackPlugin({
             overlay: false,
