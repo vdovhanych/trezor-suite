@@ -1,4 +1,5 @@
 import { CaptureConsole } from '@sentry/integrations';
+import { Integrations as TracingIntegrations } from '@sentry/tracing';
 import { BrowserOptions } from '@sentry/browser';
 import { TOR_DOMAIN } from '@suite-constants/urls';
 
@@ -11,7 +12,9 @@ export default {
         new CaptureConsole({
             levels: ['error'],
         }),
+        new TracingIntegrations.BrowserTracing(),
     ],
+    tracesSampleRate: 0.2,
     release: process.env.COMMITHASH,
     environment: process.env.SUITE_TYPE,
     beforeSend: (event, hint) => {
