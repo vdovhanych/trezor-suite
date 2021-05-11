@@ -59,7 +59,9 @@
         "publish": {
             "provider": "github",
             "repo": "trezor-suite",
-            "owner": "trezor"
+            "owner": "trezor",
+            "vPrefixedTagName": true,
+            "releaseType": "draft"
         },
         "dmg": {
             "sign": false,

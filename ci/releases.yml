@@ -39,16 +39,13 @@ suite-desktop github release:
     - suite-desktop build mac codesign
     - suite-desktop build linux codesign
     - suite-desktop build windows codesign
-  environment:
-    name: ${CI_BUILD_REF_NAME}-staging-suite
-    url: ${STAGING_SUITE_SERVER_URL}
   before_script: []
   only:
     refs:
       - codesign
   when: manual
   script:
-    - release-it --ci --config=ci/release-it.yml --disable-metrics
+    - yarn workspace @trezor/suite-desktop run publish:all #this will create draft release in Github releases and is defined in /packages/suite-desktop/package.json
   tags:
     - deploy
 
