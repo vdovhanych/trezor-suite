@@ -16,14 +16,12 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version-file: ".nvmrc"
-    - name: Setup yarn
-      uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: install # will run `yarn install` command
     - name: crowdin sync
       run: |
+        npm install -g yarn
         git checkout -B trezor-ci/crowdin-sync
         yarn workspace @trezor/suite translations:download --token=${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+        git add . && git commit -m "chore: crowdin translation update"
         gh pr create --repo vdovhanych/trezor-suite --title "crowdin translation update" --body "Sync of crowdin translations into develop." --base develop
       env:
         GITHUB_TOKEN: ${{ secrets.TREZOR_BOT_TOKEN }}
