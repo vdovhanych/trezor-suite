@@ -16,6 +16,7 @@ jobs:
     - name: crowdin action
       uses: crowdin/github-action@1.4.6
       with:
+        upload_sources: false
         download_translations: true
         localization_branch_name: trezor-ci/crowdin_update
         commit_message: "chore: update translations from crowdin"
