@@ -18,7 +18,7 @@ jobs:
         node-version-file: ".nvmrc"
     - name: crowdin sync
       run: |
-        npm install -g yarn
+        npm install -g yarn && yarn install
         git checkout -B trezor-ci/crowdin-sync
         yarn workspace @trezor/suite translations:download --token=${{ secrets.CROWDIN_PERSONAL_TOKEN }}
         git add . && git commit -m "chore: crowdin translation update"
