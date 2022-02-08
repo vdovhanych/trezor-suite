@@ -1,4 +1,4 @@
-name: Crowdin Action
+name: Crowdin sync action
 
 on:
   push:
@@ -24,7 +24,8 @@ jobs:
         git checkout -B trezor-ci/crowdin-sync
         yarn workspace @trezor/suite translations:download --token=${{ secrets.CROWDIN_PERSONAL_TOKEN }}
         git add . && git commit -m "chore: crowdin translation update"
-        gh pr create --repo vdovhanych/trezor-suite --title "crowdin translation update" --body "Sync of crowdin translations into develop." --base develop
+        gh config set prompt disabled
+        gh pr create --repo vdovhanych/trezor-suite --title "crowdin translation update" --body "Sync of crowdin translations into develop." --base develop --head trezor-ci/crowdin-sync
       env:
         GITHUB_TOKEN: ${{ secrets.TREZOR_BOT_TOKEN }}
         CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
