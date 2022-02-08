@@ -12,19 +12,19 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: crowdin action
-      uses: crowdin/github-action@1.4.6
+    - name: Setup node
+      uses: actions/setup-node@v2
       with:
-        upload_sources: false
-        download_translations: true
-        localization_branch_name: trezor-ci/crowdin_update
-        commit_message: "chore: update translations from crowdin"
-        pull_request_title: 'chore: update translations from crowdin'
-        pull_request_body: 'automated update of crowdin translations'
-        pull_request_labels: 'translations'
-        create_pull_request: true
-
+        node-version-file: ".nvmrc"
+    - name: Setup yarn
+      uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: install # will run `yarn install` command
+    - name: crowdin sync
+      run: |
+        git checkout -B trezor-ci/crowdin-sync
+        yarn workspace @trezor/suite translations:download --token=${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+        gh pr create --repo vdovhanych/trezor-suite --title "crowdin translation update" --body "Sync of crowdin translations into develop." --base develop
       env:
         GITHUB_TOKEN: ${{ secrets.TREZOR_BOT_TOKEN }}
         CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
